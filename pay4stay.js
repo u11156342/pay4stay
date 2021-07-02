@@ -54,7 +54,7 @@ function drawResults(guestHouses) {
     for (var i = 0, l = guestHouses.length; i < l; i++) {
 
         resultDiv = resultDiv + "<div><a href='" + guestHouses[i].url + "'>Book here!</a>"
-            + "<br>"
+            + "<br id='"+guestHouses[i].name+"'>"
             + "<label>" + guestHouses[i].name + "</label>"
             + "<br>"
             + "<image src = '" + guestHouses[i].picture2 + "'>"
@@ -73,7 +73,11 @@ function addGuesthouseMarker(guestHouse, map) {
         label: guestHouse.name,
         map: map,
     });
-
+    localMarker.addListener("click", () => {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#"+guestHouses[i].name).offset().top
+        }, 2000);
+    });
     propertyMarkers.push(localMarker);
 }
 
