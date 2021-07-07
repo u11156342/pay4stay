@@ -1,0 +1,4 @@
+Styling.
+Make email request open persons native client, better yet add a form to post that data to a lambda that will mail me.
+Add support for address entry.
+Data is all stored in the front end currently this can be served with and API. Likewise with the distance calculation.
