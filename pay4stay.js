@@ -125,7 +125,7 @@ function drawResults(guestHouses) {
 
         resultDiv = resultDiv
             + "<br id='"+guestHouses[i].name+"'>"
-            + "<label style='padding-top: 5px'>" + guestHouses[i].name + "</label>"
+            + "<label style='padding-top: 5px;font-weight: bold'>" + guestHouses[i].name + "</label>"
             + "<div class='resultRow'><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].url + "'>Book here!</a>"
             + "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].routeLink + "'>Directions from your destination</a>"
             + "<br>"
