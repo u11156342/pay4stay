@@ -11,3 +11,9 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.resultRow {
+
+    padding-top: 15px;
+    font-family: 'Roboto';
+}
