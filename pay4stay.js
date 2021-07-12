@@ -123,16 +123,18 @@ function drawResults(guestHouses) {
     var resultDiv = "";
     for (var i = 0, l = guestHouses.length; i < l; i++) {
 
-        resultDiv = resultDiv +
-            "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].url + "'>Book here!</a>"
-            + "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].routeLink + "'>Directions from your destination</a>"
+        resultDiv = resultDiv
             + "<br id='"+guestHouses[i].name+"'>"
-            + "<label>" + guestHouses[i].name + "</label>"
+            + "<label style='padding-top: 5px'>" + guestHouses[i].name + "</label>"
+            + "<div class='resultRow'><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].url + "'>Book here!</a>"
+            + "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].routeLink + "'>Directions from your destination</a>"
             + "<br>"
-            + "<image style='padding-left: 10px' width='150px' height='150px' src = '" + guestHouses[i].picture1 + "'>"
-            + "<image style='padding-left: 10px' width='150px' height='150px' src = '" + guestHouses[i].picture2 + "'>"
-            + "<image style='padding-left: 10px' width='150px' height='150px' src = '" + guestHouses[i].picture3 + "'>"
+            +"<div style='padding-top: 10px'>"
+            + "<image width='200px' height='150px' src = '" + guestHouses[i].picture1 + "'>"
+            + "<image style='padding-left: 10px' width='200px' height='150px' src = '" + guestHouses[i].picture2 + "'>"
+            + "<image style='padding-left: 10px' width='200px' height='150px' src = '" + guestHouses[i].picture3 + "'>"
             + "</div>"
+            +"</div>";
         addGuesthouseMarker(guestHouses[i],map);
     }
     $("#searchResults").html(resultDiv);
