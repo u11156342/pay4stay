@@ -86,6 +86,8 @@ let bbidLocations = [
 
 let guestHouses = [];
 
+
+
 let map;
 var marker;
 var propertyMarkers = [];
@@ -103,7 +105,7 @@ function initMap() {
 }
 
 class GuestHouse {
-    constructor(id, picture1, picture2, picture3, name, lat, lng) {
+    constructor(id, picture1, picture2, picture3, name, lat, lng, distanceBetween, routeLink) {
         this.url = "https://book.nightsbridge.com/" + id;
         this.picture1 = picture1;
         this.picture2 = picture2;
@@ -111,6 +113,8 @@ class GuestHouse {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
+        this.distanceBetween = distanceBetween;
+        this.routeLink = routeLink;
     }
 }
 
@@ -119,7 +123,9 @@ function drawResults(guestHouses) {
     var resultDiv = "";
     for (var i = 0, l = guestHouses.length; i < l; i++) {
 
-        resultDiv = resultDiv + "<div><a href='" + guestHouses[i].url + "'>Book here!</a>"
+        resultDiv = resultDiv +
+            "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].url + "'>Book here!</a>"
+            + "<div><a target=\"_blank\" rel=\"noopener noreferrer\" href='" + guestHouses[i].routeLink + "'>Directions from your destination</a>"
             + "<br id='"+guestHouses[i].name+"'>"
             + "<label>" + guestHouses[i].name + "</label>"
             + "<br>"
@@ -153,6 +159,14 @@ function removeMarkers(){
     }
 }
 
+function getRouteLink(bbPosition, position) {
+    var url = "https://www.google.com/maps/dir/?api=1";
+    var origin = "&origin=" + position.lat() + "," + position.lng();
+    var destination = "&destination=" + bbPosition.lat() + "," + bbPosition.lng();
+    var newUrl = new URL(url + origin + destination);
+    return newUrl;
+}
+
 function populateProperties(position) {
     var distance = $("#distance").val()*1000;
     var resultSize = $("#resultSize").val();
@@ -161,12 +175,11 @@ function populateProperties(position) {
     removeMarkers();
     for (var i = 0, l = bbidLocations.length; i < l; i++) {
 
-        console.log(resultSize);
         var bb = bbidLocations[i];
         var bbPosition = new google.maps.LatLng(bb.lat, bb.lng);
         var distanceBetween = google.maps.geometry.spherical.computeDistanceBetween(bbPosition, position);
         if (distanceBetween < distance) {
-            let guestHouse = new GuestHouse(bb.bbid, bb.picture1, bb.picture2, bb.picture3, bb.name, bb.lat, bb.lng);
+            let guestHouse = new GuestHouse(bb.bbid, bb.picture1, bb.picture2, bb.picture3, bb.name, bb.lat, bb.lng, distanceBetween, getRouteLink(bbPosition, position));
             guestHouses.push(guestHouse);
         }
         if (guestHouses.length >= resultSize){
@@ -174,6 +187,7 @@ function populateProperties(position) {
         }
 
     }
+    guestHouses.sort((a, b) => (a.distanceBetween > b.distanceBetween) ? 1 : -1);
     drawResults(guestHouses);
 }
 
