@@ -93,9 +93,28 @@ var marker;
 var propertyMarkers = [];
 
 function initMap() {
+var usrLat;
+var usrLng;
+
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            usrLat = position.lat;
+            usrLng = position.lng;
+        },
+        function errorCallback(error) {
+            usrLat = -29.853559;
+            usrLng = 31.001621;
+        }
+    );
+
+if(!usrLat){
+    usrLat = -29.853559;
+    usrLng = 31.001621;
+}
+
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
-        center: {lat: -33.952782, lng: 18.80064},
+        center: {lat: usrLat, lng: usrLng},
     });
 
     map.addListener("click", (e) => {
