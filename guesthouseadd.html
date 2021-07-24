@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" type="text/css" href="./pay4stay.css"/>
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+<body style="width: 100px">
+<form id="form-horizontal" action="https://6tle7z739h.execute-api.eu-west-1.amazonaws.com/default/lambda-guesthousestorage
+" class="form-horizontal" method="POST">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Form Name</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Guest House Name</label>
+            <div class="col-md-4">
+                <input id="name" name="textinput" type="text" placeholder="Guest House Name" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Picture 1</label>
+            <div class="col-md-4">
+                <input id="picture1" name="textinput" type="text" placeholder="some url" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input">Picture 2</label>
+            <div class="col-md-4">
+                <input id="picture2" name="input" type="text" placeholder="some url" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Picture 3</label>
+            <div class="col-md-4">
+                <input id="picture3" name="textinput" type="text" placeholder="some url" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Latitude</label>
+            <div class="col-md-4">
+                <input id="lat" name="textinput" type="text" placeholder="30.0" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Longitude</label>
+            <div class="col-md-4">
+                <input id="lng" name="textinput" type="text" placeholder="30.0" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group" style="padding-top: 5px">
+             <div class="col-md-4">
+                <button id="submit" name="singlebutton" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        <div style="padding-top: 10px" class="g-recaptcha" data-sitekey="6LdfqbkbAAAAAMKCeV7zPG48q5qHed5F2STP2HS2"></div>
+
+    </fieldset>
+
+</form>
+</body>
+<script src="guesthouseadd.js"></script>
+</html>
